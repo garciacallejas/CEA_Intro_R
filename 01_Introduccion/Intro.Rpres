@@ -31,7 +31,7 @@ Objetivos
 =======================================================
 
 - Entender las ventajas de usar R (u otros lenguages de programación)
-- Que descubrais que con R se puede hacer casi todo (desde esta presentación hasta pedir pizza)
+- Que descubráis que con R se puede hacer casi todo (desde esta presentación hasta pedir pizza)
 - Saber suficiente R para poder "googlear" lo que necesitéis aprender/resolver a partir de ahora.
  
 
@@ -40,12 +40,12 @@ Los Básicos
 
 - Download R
 - R desde Rstudio (download Rstudio)
-- [Material del curso](https://github.com/Rstats-courses/CEA2019)
+- [Material del curso](https://github.com/garciacallejas/CEA2020_Intro)
 - Carpeta 'ejercicios' (No la abrais aun!)
-- Trabajaremos sobre nuestro propio proyecto.
-- Proyecto: Explorar unos datos de pelicula.
+- Trabajaremos sobre dos proyectos distintos.
+- Datos globales sobre terremotos, y datos de personajes de Star Wars.
 
-Y si no se algo? Uso de Stackoverflow.
+¿Y si no sé algo? Uso de Stackoverflow.
 ========================================================
 
 - [StackOverflow](http://stackoverflow.com)
@@ -57,7 +57,7 @@ Baremo del problema:
 - problema (hasta 10 pestañas abiertas)
 - marrón (> 10 pestañas)
 
-Por que R?
+¿Por qué R?
 ========================================================
 
 >R has simple and obvious appeal. Through R, you can sift through complex data sets, manipulate data through sophisticated modeling functions, and create sleek graphics to represent the numbers, in just a few lines of code...R’s greatest asset is the vibrant ecosystem has developed around it: The R community is constantly adding new packages and features to its already rich function sets.
@@ -65,7 +65,7 @@ Por que R?
 >-- [The 9 Best Languages For Crunching Data](http://www.fastcompany.com/3030716/the-9-best-languages-for-crunching-data)
 
 
-Seguro que R es la herramienta adecuada?
+¿Seguro que R es la herramienta adecuada?
 ========================================================
 
 No siempre. R tiene limitaciones y debilidades:
@@ -88,7 +88,7 @@ La verdadera ventaja de usar R: Reproducibilidad
 No puedes reproducir
 ========================================================
 ...Lo que no existe.
-- Gozilla se ha comido mi ordenador
+- Godzilla se ha comido mi ordenador
   + backup
   + idealmente de forma continua
 - Godzilla se ha comido mi oficina
@@ -99,8 +99,8 @@ No puedes reproducir
 No puedes reproducir
 ========================================================
 
-...lo que has perdido. Y si necesitas un archivo que existio hace 1, 10 o 100 dias?
-- Incremental backups (minimo)
+...lo que has perdido. ¿Y si necesitas un archivo que existio hace 1, 10 o 100 dias?
+- Incremental backups (mínimo)
 - Version control (mejor). **Git** (y **GitHub**) es el más popular
 
 
@@ -108,7 +108,7 @@ No puedes reproducir
 Presentaciones
 =======================================================
 
-Yo soy ecólogo, y tu?
+Yo soy ecólogo, ¿y tú?
 
 
 
@@ -131,38 +131,13 @@ Directorio tipico:
 3-analyze_data.R
 4-make_graphs.R
 data/
-figures/
+results/figures/
 ```
 
 Guias de estilo
 ==============================================
 
->Da igual cual sigas, lo importante es tener uno <small>I. Bartomeus</small>
+Da igual cual sigas, lo importante es tener uno
 
-El mio es [este](https://github.com/ibartomeus/misc_func/blob/master/Style.md)
-El de google [este](https://google.github.io/styleguide/Rguide.xml)
-
-
-Introducción a Rmarkdown.
-===============================================
-
-> Your closest collaborator is you 6 months ago, and you don't respond to emails.
-<small>P. Wilson</small>
-
-1. Prepare data (**EXCEL**)
-
-2. Analyse data (**R**)
-
-3. Write report/paper (**WORD**)
-
-
-Introducción a Rmarkdown.
-===============================================
-
-- Rstudio
-- knitr 
-- pandoc 
-
-
-
-
+El de Hadley Wickham (un pez gordo de R) es [este](https://style.tidyverse.org/)
+El de google es [este](https://google.github.io/styleguide/Rguide.xml)
