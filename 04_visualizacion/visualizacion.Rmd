@@ -1,0 +1,10 @@
+---
+title: "Visualización de datos con ggplot2"
+author: "David García Callejas"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE)
+```
+
