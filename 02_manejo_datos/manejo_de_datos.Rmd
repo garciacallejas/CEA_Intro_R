@@ -8,3 +8,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE)
 ```
 
+En esta sección trataremos el manejo de datos de diferentes tipos. La selección, modificación, eliminación, o agregación de datos, principalmente usando dataframes. 
+
+Selección
+
+subset, which, unique, por nombres de columnas
+
+```{r}
+eq <- read.csv2(file = "../data/Earthquake_data.csv",header = TRUE,stringsAsFactors = FALSE)
+eq.clean <- eq[,c("En","Year","Mo","Da","Ho","Mi","Se","Area","Lat","Lon","Dep","M")]
+
+```
+
+
+Modificación
+
+NAs, regular expressions
+
+Agregación
+
+match, obtención de medias por grupos, long-wide format (starwars films), unir dataframes (left_join)
+

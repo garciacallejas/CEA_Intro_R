@@ -12,6 +12,8 @@ La estructura de datos más apropiada para cargar datos en R son, generalmente, 
 
 Antes de empezar, una recomendación: utilizad en la medida de lo posible formatos abiertos para guardar tablas de datos. Por ejemplo, csv o txt. Los archivos de programas propietarios (e.g. excel) dependen de compañías privadas, que pueden dejar de dar soporte a sus programas en cualquier momento.
 
+De manera similar, intentad almacenar los metadatos en archivos txt separados de los datos en sí. Documentar los datos en una hoja de excel es enormemente incómodo para trabajar de manera eficiente. Por ejemplo, importar datos de áreas protegidas terrestres para trabajar con ellos en R es imposible sin una limpieza previa. Esto impide la transferabilidad y la reproducibilidad de los análisis. Comparad ese conjunto de datos con los datos en terremotos ("earthquake_data").
+
 Comenzaremos por repasar las funciones básicas de lectura y escritura de datos en R.
 
 ```{r}
