@@ -279,7 +279,7 @@ En R también podemos crear matrices de varias dimensiones, los llamados "arrays
 ```{r}
 # EJERCICIO 1
 
-# Crea un dataframe de 1000 filas en el que la primera columna sea una columna numérica que siga una distribución normal con media 0 y desviación típica 1. La segunda columna debe ser una distribución aleatoria de las letras del alfabeto. Pista: usa las funciones "rnorm" y "runif", y el vector "letters"
+# Crea un dataframe de 1000 filas en el que la primera columna sea una columna numérica que siga una distribución normal con media 0 y desviación típica 1. La segunda columna debe ser una distribución aleatoria de las letras del alfabeto. Pista: usa las funciones "rnorm" y "runif", y el vector "letters", que viene por defecto en R.
 
 # EJERCICIO 2
 
