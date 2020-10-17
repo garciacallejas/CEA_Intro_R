@@ -8,3 +8,28 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE)
 ```
 
+Hasta ahora hemos visto operaciones generales con datos, sobre todo organizados en dataframes. Este tipo de operaciones nos permiten trabajar con todas las filas a la vez, o podemos seleccionar una observación concreta para modificarla, etc. Pero en muchas ocasiones nos interesa repetir operaciones complejas en cada una de nuestras observaciones. Los lenguajes de programación incluyen lo que se llama "estructuras de control" que nos permiten decir qué órdenes queremos aplicar a diferentes conjuntos de datos. 
+
+La estructura más sencilla es la estructura condicional "if". Si se cumple una cierta condición, ejecuta unas líneas de código. Si no se cumple, ejecuta otras.
+
+```{r}
+# dataframe sencillo como ejemplo
+d1 <- data.frame(caracter = c("a","b","c"), valor = c(1,2,4))
+
+# si el caracter d es uno de los valores en la columna "caracter",
+# sacamos un mensaje por pantalla. En caso contrario, sacamos otro mensaje.
+if("d" %in% d1$caracter){
+  cat("el caracter d está incluido en d1")
+}else{
+  cat("d no está en d1")
+}
+```
+
+La utilidad de esta "condicionalidad" es enorme. En la estructura de la función "if" puede ir cualquier condición lógica, que devuelva TRUE o FALSE. Por ejemplo, si leemos un conjunto de datos, podemos hacer diferentes operaciones con él dependiendo de si tiene NAs o no, de si tiene una columna determinada...
+
+```{r}
+
+```
+
+
+

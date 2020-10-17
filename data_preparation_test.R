@@ -52,6 +52,12 @@ write.csv2(film.ss,"data/starwars_personajes_naves.csv",row.names = FALSE)
 
 # earthquakes -------------------------------------------------------------
 
-eq <- read.csv2(file = "data/Earthquake_data.csv",header = TRUE,stringsAsFactors = FALSE)
+eq <- read.csv2(file = "data/Earthquake_data.csv",dec = ".",header = TRUE,stringsAsFactors = FALSE)
 
 eq.clean <- eq[,c("En","Year","Mo","Da","Ho","Mi","Se","Area","Lat","Lon","Dep","M")]
+
+eq.wide.1 <- eq[,c("Year","Area","M")]
+eq.wide.1 <- unique(eq.wide.1)
+eq.wide <- spread(eq.wide.1[1:50,],key = Year, value = M)
+
+write.csv2(eq.wide,file = "./data/Earthquake_wide_example.csv",row.names = FALSE)
