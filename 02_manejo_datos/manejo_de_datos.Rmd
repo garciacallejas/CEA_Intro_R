@@ -73,6 +73,7 @@ ejemplo.vector <- c("este", "vector", "tiene", "algún", "NA", NA)
 is.na(ejemplo.vector)
 which(is.na(ejemplo.vector))
 which(!is.na(ejemplo.vector)) # recordad que la exclamación delante de una condición lógica es la negación de esa condición
+sum(is.na(ejemplo.vector)) # ¿cuántos NA hay en un vector? la función "sum" también funciona con vectores lógicos
 ```
 
 ## Modificación
