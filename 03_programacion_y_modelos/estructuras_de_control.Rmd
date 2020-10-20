@@ -5,7 +5,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE, message = FALSE)
 ```
 
 Hasta ahora hemos visto operaciones generales con datos, sobre todo organizados en dataframes. Este tipo de operaciones nos permiten trabajar con todas las filas a la vez, o podemos seleccionar una observación concreta para modificarla, etc. Pero en muchas ocasiones nos interesa repetir operaciones complejas en cada una de nuestras observaciones. Los lenguajes de programación incluyen lo que se llama "estructuras de control" que nos permiten decir qué órdenes queremos aplicar a diferentes conjuntos de datos. 
