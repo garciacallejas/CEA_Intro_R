@@ -1,7 +1,9 @@
 ---
-title: "modelos estadísticos"
+title: "Modelos de regresión lineal"
 author: "David García Callejas"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,16 +17,18 @@ El modelo estadístico más sencillo, que veremos en esta sección, es la regres
 Aunque no veremos los fundamentos estadísticos de estos análisis, tened cuidado... estos tests lo que muestran es si hay relación estadística o no entre dos variables. Pero una frase muy usada en estadística ya nos advierte: "correlación no implica causalidad"... https://www.tylervigen.com/spurious-correlations
 
 ```{r}
-# para el primer ejemplo, veremos la relación entre la profundidad y la magnitud de nuestros datos de terremotos
-eq <- read.csv2("../data/Earthquake_data.csv",header = TRUE,dec = ".",stringsAsFactors = FALSE)
+# para el primer ejemplo, veremos la relación entre la 
+# profundidad y la magnitud de nuestros datos de terremotos
+eq <- read.csv2("../data/Earthquake_data.csv",
+                header = TRUE,dec = ".",stringsAsFactors = FALSE)
 head(eq)
 
-# en la siguiente sesión aprenderemos a visualizar datos. Por ahora, fijaos en el resultado de esto
+# en la siguiente sesión aprenderemos a visualizar datos. 
+# Por ahora, fijaos en el resultado de esto
 library(tidyverse)
 eq %>% ggplot(aes(x = Dep, y = M)) + 
   geom_point()
 ```
-
 
 Los modelos de regresión lineal (linear regression models) relacionan una variable Y con una o más variables X1, X2, etc. Estas relaciones se codifican en R de la siguiente manera:
 
@@ -36,14 +40,16 @@ Lo que viene a decir que nuestro modelo explica Y en función de X1 y en funció
 # ¿cómo funciona la función lm?
 ?lm
 
-# nuestra primera regresión lineal! ¿viene la magnitud de un terremoto explicada por su profundidad?
+# nuestra primera regresión lineal! 
+# ¿viene la magnitud de un terremoto explicada por su profundidad?
 m1 <- lm(formula = M ~ Dep, data = eq)
 
 # hemos guardado los resultados del modelo en una variable, m1. ¿Y ahora?
 m1
 # ¿qué tipo de objeto es m1?
 str(m1)
-# mucha información, pero la clave es la primera línea... el resultado de llamar a la función lm es una lista!
+# mucha información, pero la clave es la primera línea... 
+# el resultado de llamar a la función lm es una lista!
 # podemos obtener un resumen del modelo con la función "summary"
 summary(m1)
 ```
@@ -76,7 +82,9 @@ Veamos más ejemplos. ¿Tiene relación la altura de una persona con su peso? ..
 
 ```{r}
 # información sobre personajes de Star Wars
-personajes_SW <- read.csv2(file = "../data/starwars_info_personajes.csv",header = TRUE,stringsAsFactors = FALSE)
+personajes_SW <- read.csv2(file = "../data/starwars_info_personajes.csv",
+                           header = TRUE,
+                           stringsAsFactors = FALSE)
 head(personajes_SW)
 
 # tenemos altura (height) y peso (mass) de cada personaje
@@ -95,7 +103,9 @@ Parece que hay un único punto que rompe la tendencia. ¿Qué personaje es, que 
 
 ```{r}
 # ¿cuál es el peso máximo de los datos?
-# literalmente: cuál es el nombre (personajes_SW$name) de la fila cuyo peso (mass) es igual al peso máximo de cualquiera de las filas (función "max").
+# literalmente: cuál es el nombre (personajes_SW$name) 
+# de la fila cuyo peso (mass) es igual al peso máximo 
+# de cualquiera de las filas (función "max").
 peso.max <- which(personajes_SW$mass == max(personajes_SW$mass,na.rm = TRUE))
 peso.max # el peso máximo es el del personaje de la fila 16
 personajes_SW$name[peso.max] # ¿cuál es su nombre?
@@ -103,7 +113,8 @@ personajes_SW$name[peso.max] # ¿cuál es su nombre?
 
 Pues claro, no podía ser otro... ¿qué sucede si eliminamos ese punto?
 ```{r}
-personajes_2 <- personajes_SW[-peso.max,] # eliminamos sólo la fila que corresponde al peso máximo
+# eliminamos sólo la fila que corresponde al peso máximo
+personajes_2 <- personajes_SW[-peso.max,] 
 
 # y repetimos el modelo con los datos nuevos
 sw2 <- lm(formula = mass ~ height, data = personajes_2)

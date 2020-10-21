@@ -1,7 +1,9 @@
 ---
 title: "Lectura y Escritura de datos"
 author: "David García Callejas"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -88,14 +90,19 @@ a2$name[1] <- "Lucas"
 
 # guardar archivo csv separado por punto y coma
 # write.table es la función general
-# podemos especificar si queremos una columna que guarde los nombres de las filas de nuestro dataframe
+# podemos especificar si queremos una columna que guarde 
+# los nombres de las filas de nuestro dataframe
 
 # estas dos órdenes son equivalentes
-# write.table(x = a2,file = "../data/archivo_nuevo.csv",sep = ";",row.names = FALSE)
-# write.csv2(x = a2,file = "../data/archivo_nuevo.csv",row.names = FALSE)
+# write.table(x = a2,file = "../data/archivo_nuevo.csv",
+#             sep = ";",
+#             row.names = FALSE)
+# write.csv2(x = a2,file = "../data/archivo_nuevo.csv",
+#            row.names = FALSE)
 
 # y para guardar un archivo csv separado por comas, usamos
-# write.csv(x = a2, file = "../data/archivo_nuevo_comas.csv", row.names = FALSE)
+# write.csv(x = a2, file = "../data/archivo_nuevo_comas.csv", 
+#           row.names = FALSE)
 
 ```
 

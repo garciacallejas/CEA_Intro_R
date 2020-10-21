@@ -1,7 +1,9 @@
 ---
 title: "Estructuras de datos"
 author: "David García Callejas"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +17,8 @@ Hemos visto los tipos de datos básicos en R: numérico (real y entero), caráct
 Las listas pueden ser intuitivamente pensadas como una estructura semejante a un vector, cuyos elementos pueden contener *cualquier estructura*. Los elementos de una lista pueden ser numéricos, caracteres, vectores, o incluso otras listas. Además, cada elemento puede ser de tipo diferente.
 
 ```{r}
-# una lista con dos elementos numéricos, un carácter, y un vector de caracteres
+# una lista con dos elementos numéricos, un carácter, 
+# y un vector de caracteres
 mi.info <- list(18,04, "David", c("extremoduro","radio tarifa","tool"))
 mi.info
 ```
@@ -59,7 +62,8 @@ En general, para trabajar con listas, lo más útil es usar *doble corchete*. M�
 Los elementos de las listas pueden nombrarse
 
 ```{r}
-mi.info <- list(dia = 18, mes = 4, nombre = "David", musica = c("extremoduro", "radio tarifa", "tool"))
+mi.info <- list(dia = 18, mes = 4, nombre = "David", 
+                musica = c("extremoduro", "radio tarifa", "tool"))
 mi.info
 ```
 
@@ -86,7 +90,8 @@ Como decía, una lista puede contener otras listas como elementos.
 
 ```{r}
 # si quiero un número como nombre de un elemento, lo pongo entre comillas
-mis.viajes <- list("2020" = c("Grazalema", "Parc del Cadí", "Cerdeña"), "2019" = c("Portugal", "Doñana", "Picos de Europa"))
+mis.viajes <- list("2020" = c("Grazalema", "Parc del Cadí", "Cerdeña"), 
+                   "2019" = c("Portugal", "Doñana", "Picos de Europa"))
 mis.viajes
 
 # añado la lista "mis.viajes" a la lista general
@@ -107,7 +112,8 @@ Las listas, con toda su flexibilidad, son complejas de manejar, y no se ajustan 
 
 ```{r}
 
-# seguramente el dataframe más usado en todos los tutoriales de R... características de diferentes especies de "Iris"
+# seguramente el dataframe más usado en todos los tutoriales de R... 
+# características de diferentes especies de "Iris"
 head(iris)
 
 # ¿cómo crear un dataframe? fácil!
@@ -150,20 +156,27 @@ Hay varias maneras de añadir información a un dataframe ya existente
 
 ```{r}
 
-# no se puede añadir elemento a elemento, porque no existe la fila 3 del dataframe
+# no se puede añadir elemento a elemento, 
+# porque no existe la fila 3 del dataframe
 # info.personal$dia[3] <- 5
 
-# lo ideal es crear un nuevo dataframe y añadirlo completo con la función "rbind" (row-wise bind, literalmente enganche de filas). 
+# lo ideal es crear un nuevo dataframe y añadirlo completo 
+# con la función "rbind" (row-wise bind, literalmente enganche de filas). 
 # Es como apilar piezas de Lego
 nueva.fila <- data.frame(dia = 1, mes = 5, nombre = "Sofia")
 info.personal <- rbind(info.personal,nueva.fila)
 
-# La manera óptima de trabajar con dataframes es crear desde cero la estructura, con todas las filas que necesitemos. 
-# Esto permite a R asignar la memoria necesaria para esos datos, aunque estén temporalmente "vacíos".
+# La manera óptima de trabajar con dataframes es crear 
+# desde cero la estructura, con todas las filas que necesitemos. 
+# Esto permite a R asignar la memoria necesaria para esos datos, 
+# aunque estén temporalmente "vacíos".
 
 personas <- 1000
 
-info.long <- data.frame(dia = numeric(personas), mes = numeric(personas), nombre = character(personas),stringsAsFactors = FALSE)
+info.long <- data.frame(dia = numeric(personas), 
+                        mes = numeric(personas), 
+                        nombre = character(personas),
+                        stringsAsFactors = FALSE)
 
 # este dataframe contiene 1000 entradas, todas vacías
 head(info.long)
@@ -178,11 +191,14 @@ info.long$nombre[1] <- "Anna"
 # pero hacerlo fila a fila es problemático
 # info.long[3,] <- c(1,2,"Mario")
 
-# fijáos que lo que estamos asignando es un vector de caracteres. R asume que si mezclas números y caracteres en un mismo vector, todo será convertido a carácter.
+# fijáos que lo que estamos asignando es un vector de caracteres. 
+# R asume que si mezclas números y caracteres en un mismo vector, 
+# todo será convertido a carácter.
 mi.vector <- c(1,2,"Mario")
 str(mi.vector)
 
-# Si asignamos esto a una fila de nuestro dataframe, convertirá las columnas numéricas en columnas de caracteres.
+# Si asignamos esto a una fila de nuestro dataframe, 
+# convertirá las columnas numéricas en columnas de caracteres.
 # Y encima, lo hace sin avisar, así que tenemos que tener mucho cuidado!
 info.long.copia <- info.long
 
@@ -228,7 +244,8 @@ rownames(mi.matriz) <- c("fila1","fila2","fila3")
 colnames(mi.matriz) <- c("col1","col2","col3")
 mi.matriz
 
-# al igual que en listas y dataframes, si tenemos una matriz nombrada, podemos acceder a sus elementos por sus nombres
+# al igual que en listas y dataframes, si tenemos una matriz nombrada, 
+# podemos acceder a sus elementos por sus nombres
 mi.matriz["fila1","col3"]
 
 ```
@@ -266,7 +283,8 @@ mi.df
 
 # de dataframe a matriz
 mi.matriz.2 <- as.matrix(info.long)
-# hemos intentado transformar a matriz un dataframe que contenía números y caracteres. R lo convierte en una matriz de caracteres
+# hemos intentado transformar a matriz un dataframe que 
+# contenía números y caracteres. R lo convierte en una matriz de caracteres
 head(mi.matriz.2)
 ```
 
@@ -276,14 +294,14 @@ En R también podemos crear matrices de varias dimensiones, los llamados "arrays
 ?array
 ```
 
-```{r}
-# EJERCICIO 1
 
-# Crea un dataframe de 1000 filas en el que la primera columna sea una columna numérica que siga una distribución normal con media 0 y desviación típica 1. La segunda columna debe ser una distribución aleatoria de las letras del alfabeto. Pista: usa las funciones "rnorm" y "runif", y el vector "letters", que viene por defecto en R.
+EJERCICIOS
 
-# EJERCICIO 2
+1
 
-# En el dataframe del ejercicio anterior, sustituye todas las letras "c" por "k". Pista: recuerda la función "which".
+Crea un dataframe de 1000 filas en el que la primera columna sea una columna numérica que siga una distribución normal con media 0 y desviación típica 1. La segunda columna debe ser una distribución aleatoria de las letras del alfabeto. Pista: usa las funciones "rnorm" y "runif", y el vector "letters", que viene por defecto en R.
 
-```
+2
+
+En el dataframe del ejercicio anterior, sustituye todas las letras "c" por "k". Pista: recuerda la función "which".
 

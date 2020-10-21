@@ -1,7 +1,9 @@
 ---
 title: "Estructuras de control"
 author: "David García Callejas"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -48,7 +50,10 @@ if("d" %in% d1$caracter){
 La utilidad de esta "condicionalidad" es enorme. En la estructura de la función `if` puede ir cualquier condición lógica, que devuelva TRUE o FALSE. Por ejemplo, si leemos un conjunto de datos, podemos hacer diferentes operaciones con él dependiendo de si tiene NAs o no, de si tiene una columna determinada...
 
 ```{r}
-eq <- read.csv2(file = "../data/Earthquake_data.csv",dec = ".",header = TRUE,stringsAsFactors = FALSE)
+eq <- read.csv2(file = "../data/Earthquake_data.csv",
+                dec = ".",
+                header = TRUE,
+                stringsAsFactors = FALSE)
 
 # nombre de la columna que nos interesa
 mi.columna <- "Dep"
@@ -57,20 +62,32 @@ mi.columna <- "Dep"
 # las operaciones que haremos
 resultado <- NA
 
-if(mi.columna %in% names(eq)){ # esta es una manera estándar de comprobar si una columna está en un dataframe
+# esta es una manera estándar de comprobar si una columna está en un dataframe
+if(mi.columna %in% names(eq)){ 
   
   # si tenemos esta columna, podemos tener otra condición dentro de este código
-  if(sum(is.na(eq[,mi.columna])) == 0){ # esta condición pregunta literalmente "si la suma de NAs en la columna Dep es igual a cero"
+  # esta condición pregunta literalmente 
+  # "si la suma de NAs en la columna Dep es igual a cero"
+  if(sum(is.na(eq[,mi.columna])) == 0){ 
     
     resultado <- mean(eq[,mi.columna])
     
-  }else{ # si no se cumple la condición es que hay al menos un NA en la columna Dep
+  # si no se cumple la condición es que hay al menos un NA en la columna Dep
+  }else{ 
     
-    num.nas <- sum(is.na(eq[,mi.columna])) # ¿cuántos NA?
-    datos.validos <- sum(!is.na(eq[,mi.columna])) # y la condición contraria, ¿cuántos no son NA?
-    cat(paste("existen",num.nas,"NAs en los datos, la media se calculará con",datos.validos,"observaciones"))
+    # ¿cuántos NA?
+    num.nas <- sum(is.na(eq[,mi.columna])) 
+    # y la condición contraria, ¿cuántos no son NA?
+    datos.validos <- sum(!is.na(eq[,mi.columna])) 
+    # lo sacamos por pantalla
+    cat(paste("existen",
+              num.nas,
+              "NAs en los datos, la media se calculará con",
+              datos.validos,
+              "observaciones"))
     
-    resultado <- mean(eq[,mi.columna],na.rm = TRUE) # el argumento na.rm elimina los NA antes de calcular la media
+    # el argumento na.rm elimina los NA antes de calcular la media
+    resultado <- mean(eq[,mi.columna],na.rm = TRUE) 
   }# aquí acaba el segundo if-else
   
 }else{ # si no se cumple la primera condición es que no existe la columna Dep
@@ -95,7 +112,8 @@ for(i in 1:5){
 
 ```{r}
 for(contador in 1:10000){
-  # repetimos 10000 veces un cierto código con una variable interna que se llama "contador".
+  # repetimos 10000 veces un cierto código 
+  # con una variable interna que se llama "contador".
 }
 ```
 
@@ -124,13 +142,17 @@ Ya podemos empezar a intuir el potencial de los bucles para automatizar operacio
 
 ```{r}
 
-naves_SW <- read.csv2("../data/starwars_personajes_naves.csv",header = TRUE,stringsAsFactors = FALSE)
+naves_SW <- read.csv2("../data/starwars_personajes_naves.csv",
+                      header = TRUE,
+                      stringsAsFactors = FALSE)
 head(naves_SW)
 
-# las funciones nrow() y length() nos devuelven el número de filas y columnas de un dataframe, respectivamente
+# las funciones nrow() y length() nos devuelven el número de 
+# filas y columnas de un dataframe, respectivamente
 num.personajes <- nrow(naves_SW)
 
-# este será mi vector de resultados. Un elemento por cada personaje, que almacene el número de vehículos que conduce.
+# este será mi vector de resultados. Un elemento por cada personaje, 
+# que almacene el número de vehículos que conduce.
 num.naves <- numeric(num.personajes)
 
 # recordad que un vector también puede tener nombres asociados a sus elementos
@@ -143,14 +165,16 @@ head(num.naves)
 # sumando los valores TRUE de su fila.
 # y guardamos ese resultado en el vector "num.naves"
 for(pers in 1:num.personajes){
-  # puedo usar el contador "pers" para trabajar en la fila adecuada del dataframe
+  # puedo usar el contador "pers" 
+  # para trabajar en la fila adecuada del dataframe.
   # a la vez, selecciono las columnas que me interesan
   # recordad: dataframe[fila(s),columna(s)]
   mis.naves <- naves_SW[pers,2:11]
   
-  # usamos la función rowSums, porque la variable "mis.naves" es también un dataframe
-  # fijaos que podemos usar nuestro contador "pers" para decir en qué posición del vector
-  # de resultados guardamos los datos.
+  # usamos la función rowSums, porque la variable "mis.naves" 
+  # es también un dataframe
+  # fijaos que podemos usar nuestro contador "pers" para decir 
+  # en qué posición del vector de resultados guardamos los datos.
   num.naves[pers] <- rowSums(mis.naves)
 }
 
@@ -168,11 +192,13 @@ Para ello, primero tenemos que familiarizarnos con la "vectorización". Vectoriz
 mi_vector <- 1:10
 mi_vector
 
-# esta operación se aplica de manera automática a todos los elementos del vector
+# esta operación se aplica de manera automática 
+# a todos los elementos del vector
 # esto es vectorización
 resultado <- mi_vector^2
 
-# si R no tuviera esta funcionalidad, podríamos crear un bucle para hacer el mismo cálculo
+# si R no tuviera esta funcionalidad, 
+# podríamos crear un bucle para hacer el mismo cálculo
 resultado_for <- numeric(length(mi_vector))
 # calcula el cuadrado de cada elemento y lo guarda en "resultado_for"
 for(i in 1:length(mi_vector)){
@@ -189,7 +215,8 @@ R permite vectorizar con operaciones más complejas que las aritméticas. Para e
 mi.matriz <- matrix(data = c(1,2,3,4,5,6,7,8,9),nrow = 3)
 mi.matriz
 
-# el argumento MARGIN especifica si queremos aplicar una función sobre cada fila (1) o sobre cada columna (2)
+# el argumento MARGIN especifica si queremos aplicar 
+# una función sobre cada fila (1) o sobre cada columna (2)
 suma.filas <- apply(mi.matriz, MARGIN = 1, FUN = sum)
 suma.columnas <- apply(mi.matriz, MARGIN = 2, FUN = sum)
 suma.filas
@@ -206,7 +233,10 @@ Una de las más comunes es `lapply`, que permite hacer operaciones sobre columna
 
 ```{r}
 # usamos de nuevo los datos de terremotos
-eq <- read.csv2(file = "../data/Earthquake_data.csv",dec = ".",header = TRUE,stringsAsFactors = FALSE)
+eq <- read.csv2(file = "../data/Earthquake_data.csv",
+                dec = ".",
+                header = TRUE,
+                stringsAsFactors = FALSE)
 
 # queremos calcular la profundidad media y la magnitud media usando lapply
 eq.clean <- eq[,c("Dep","M")]
@@ -215,9 +245,13 @@ head(eq.clean)
 mean.values <- lapply(eq.clean, FUN = mean, na.rm = TRUE)
 mean.values
 
-# Fijáos que no hemos necesitado eliminar los NAs de los datos. La función "mean" tiene un argumento na.rm que permite eliminarlos automáticamente. 
-# Este argumento (o cualquier otro que tenga la función que queramos usar) también se puede pasar a lapply, como hemos visto.
-# Si no le pasamos ese argumento extra, la función "mean" fallará si encuentra NAs
+# Fijáos que no hemos necesitado eliminar los NAs de los datos. 
+# La función "mean" tiene un argumento na.rm 
+# que permite eliminarlos automáticamente. 
+# Este argumento (o cualquier otro que tenga la función que queramos usar) 
+# también se puede pasar a lapply, como hemos visto.
+# Si no le pasamos ese argumento extra, 
+# la función "mean" fallará si encuentra NAs
 mean.with.nas <- lapply(eq.clean, FUN = mean)
 mean.with.nas
 ```
@@ -236,13 +270,14 @@ for(i in 1:length(eq.clean)){
 mean.with.for
 ```
 
-```{r}
-# EJERCICIO 1
-# Crea una matriz de 100x3 en la que cada columna esté formada por números aleatorios, la primera entre 0-1, la segunda entre 0-10, la tercera entre 0-100.
-# pista: ?runif
-# Utilizando bucles o funciones de la familia apply, calcula la media y la desviación típica de cada columna.
-# Guarda los resultados en un dataframe con tres filas y, al menos, una columna "media" y una columna "desviacion.tipica".
-```
+EJERCICIO 1
+
+Crea una matriz de 100x3 en la que cada columna esté formada por números aleatorios, la primera entre 0-1, la segunda entre 0-10, la tercera entre 0-100.
+pista: `?runif`
+
+Utilizando bucles o funciones de la familia apply, calcula la media y la desviación típica de cada columna.
+
+Guarda los resultados en un dataframe con tres filas y, al menos, una columna "media" y una columna "desviacion.tipica".
 
 
 
