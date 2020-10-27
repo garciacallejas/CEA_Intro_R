@@ -49,3 +49,7 @@ a2$name[1] <- "Lucas"
 # install.packages("xlsx")
 # library(xlsx)
 # ?write_xlsx
+
+my.file <- "../data/sample500tuits_starwarsandaluz.txt"
+conn <- file(my.file,open = "r")
+lineas <-readLines(conn)
