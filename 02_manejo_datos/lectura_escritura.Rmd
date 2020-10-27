@@ -116,5 +116,12 @@ Excel puede leer perfectamente los archivos .csv, y son mucho más fáciles de c
 
 Una opción interesante de las funciones de escritura por defecto en R es el argumento "append". Si este argumento está activado (TRUE), R busca el nombre del archivo y en vez de sobreescribirlo completo, añade los datos que queramos escribir al final del archivo ya existente.
 
+Otra función, que nos permite leer archivos línea a línea es `readLines`
 
+```{r}
+my.file <- "../data/sample500tuits_starwarsandaluz.txt"
+conn <- file(my.file,open = "r")
+lineas <-readLines(conn)
+```
 
+En este caso, el archivo se lee como un vector de caracteres, donde cada línea es un elemento.
