@@ -50,7 +50,7 @@ a3 <- read.csv2(file = "../data/starwars_names.csv")
 
 Estas funciones también asignan valores por defecto al carácter de separación decimal, tened cuidado.
 
-R también permite leer hojas de excel como dataframes. Para ello necesitamos cargar un *paquete* externo. Un paquete no es más que una colección de funciones que no están incluidas por defecto en nuestra instalación de R. En este caso, por defecto R no trae funciones para leer archivos de excel, pero la comunidad ha desarrollado estas funciones y nosotros podemos cargarlas y usarlas.
+R también permite leer hojas de excel como dataframes. Para ello necesitamos cargar un *paquete* externo. Un paquete, como vimos, no es más que una colección de funciones que no están incluidas por defecto en nuestra instalación de R. En este caso, por defecto R no trae funciones para leer archivos de excel, pero la comunidad ha desarrollado estas funciones y nosotros podemos cargarlas y usarlas.
 
 ```{r}
 # la orden "library" se usa para cargar un paquete determinado
@@ -106,7 +106,7 @@ a2$name[1] <- "Lucas"
 
 ```
 
-Excel puede leer perfectamente los archivos .csv, y son mucho más fáciles de compartir entre sistemas operativos, programas de hojas de cálculo y otro software. Os recomiendo guardar *siempre* vuestras tablas en formato .csv. En todo caso, existen paquetes de R que permiten guardar archivos directamente en formato .csv.
+Excel puede leer perfectamente los archivos .csv, y son mucho más fáciles de compartir entre sistemas operativos, programas de hojas de cálculo y otro software. Os recomiendo guardar *siempre* vuestras tablas en formato .csv (o .txt). En todo caso, existen paquetes de R que permiten guardar archivos directamente en formato excel.
 
 ```{r}
 # install.packages("xlsx")

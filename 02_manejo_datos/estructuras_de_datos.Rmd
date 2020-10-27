@@ -224,7 +224,7 @@ NULL es un término reservado, que indica un valor no definido. En este caso, el
 
 ## Matrices
 
-Una matriz es una estructura de datos bidimensional, es decir, tiene filas y columnas igual que un dataframe. Sin embargo, las matrices por definición sólo pueden almacenar valores de un solo tipo. Mientras que un dataframe puede tener columnas numéricas y de caracteres, una matriz sólo puede tener columnas o numéricas, o de caracteres. Esta restricción las hace más eficientes en memoria.
+Una matriz es una estructura de datos bidimensional, es decir, tiene filas y columnas igual que un dataframe. Sin embargo, las matrices por definición sólo pueden almacenar valores de un solo tipo. Mientras que un dataframe puede tener columnas numéricas y de caracteres, una matriz sólo puede tener columnas o numéricas, o lógicas, o de caracteres. Esta restricción las hace más eficientes en memoria.
 
 ```{r}
 mi.matriz <- matrix(data = c(1,2,3,4,5,6,7,8,9),nrow = 3)
