@@ -11,28 +11,34 @@
 # https://stackoverflow.com/questions/12626637/read-a-text-file-in-r-line-by-line
 # https://stackoverflow.com/questions/10294284/remove-all-special-characters-from-a-string-in-r
 
+library(tidyverse) # includes the package stringr
+
 # leemos un archivo linea a linea
 my.file <- "/home/david/Work/Projects/R_courses/CEA2020_Intro/data/sample500tuits_starwarsandaluz.txt"
 conn <- file(my.file,open = "r")
 lineas <-readLines(conn)
 
+# lo pasamos de vector a dataframe
 df.lineas <- as.data.frame(lineas)
 
-library(tidyverse) # includes the package stringr
-
+# buscamos los caracteres "RT" o "Retweeted" para saber qué tuits
+# son retuits
 is.RT <- grep("RT|Retweeted",df.lineas$lineas)
 
+# creamos una columna "is.RT" que en principio es FALSE para todos
 df.lineas$is.RT <- FALSE
+# y le damos el valor TRUE a las posiciones identificadas con "grep"
 df.lineas$is.RT[is.RT] <- TRUE
 
 # ¿cuántos usuarios aparecen en cada tuit?
 # primero, extraemos una lista con todos los usuarios en cada tuit
+# esta orden extrae todas las palabras que empiecen por @
 users.mentioned <- str_extract_all(df.lineas$lineas, "(?<=^|\\s)@[^\\s]+")
 # cuántos elementos tiene cada posición de la lista
 users.mentioned2 <- lapply(users.mentioned,FUN = length)
 # convertimos esto a un vector
 num.users <- unlist(users.mentioned2)
-# y este número lo pasamos a una columna del dataframe
+# y este número lo pasamos a una nueva columna del dataframe
 df.lineas$users.mentioned <- num.users
 
 # ¿qué hashtags aparecen y con qué frecuencia?
@@ -52,5 +58,7 @@ names(hashtag.freq) <- c("hashtag","frecuencia")
 freq.plot <- ggplot(hashtag.freq, aes(x = hashtag, y = frecuencia)) + 
   geom_col() + 
   theme_bw() +
+  # para retocar el eje x he mirado en 
+  # http://www.cookbook-r.com/Graphs/Axes_(ggplot2)/
   theme(axis.text.x  = element_text(angle=90, vjust=0.5, size=8, hjust = 1))
 freq.plot
