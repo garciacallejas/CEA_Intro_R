@@ -64,3 +64,7 @@ https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d
 * Presentación sobre el paquete `rtweet`: 
 
 https://mkearney.github.io/nicar_tworkshop/#1
+
+* Conteo de palabras, sentiment analysis:
+
+https://utstat.toronto.edu/~nathan/teaching/sta4002/Class1/scrapingtwitterinR-NT.html
