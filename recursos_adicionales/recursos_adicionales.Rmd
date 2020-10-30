@@ -1,0 +1,66 @@
+---
+title: "Recursos adicionales"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Estadística
+
+* http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf
+
+* ftp://ftp.tuebingen.mpg.de/pub/kyb/bresciani/Crawley%20-%20The%20R%20Book.pdf
+
+## Análisis de datos y tidyverse
+
+* Tutorial sobre tidyverse: 
+
+https://www.datacamp.com/community/tutorials/tidyverse-tutorial-r
+
+* El libro más completo sobre data science en R, cubre en profundidad
+muchas de las ideas vistas en este curso: 
+
+https://r4ds.had.co.nz/
+
+* Para análisis de caracteres y expresiones regulares, en particular, 
+el capítulo 14: 
+
+https://r4ds.had.co.nz/strings.html
+
+* funciones para trabajar con caracteres:
+
+https://raw.githubusercontent.com/rstudio/cheatsheets/master/strings.pdf
+
+## Visualización de datos con ggplot2
+
+* Trucos útiles y sencillos: 
+
+http://www.cookbook-r.com/Graphs/
+
+* pdf con las operaciones más habituales:
+
+https://raw.githubusercontent.com/rstudio/cheatsheets/master/data-visualization-2.1.pdf
+
+* El libro escrito por Hadley Wickham, el creador del paquete: 
+
+https://ggplot2-book.org/
+
+* Más detalles sobre mapas: 
+
+https://www.datanovia.com/en/blog/how-to-create-a-map-using-ggplot2/
+
+## Análisis de datos de twitter
+
+* Dos tutoriales relativamente sencillos:
+
+https://www.earthdatascience.org/courses/earth-analytics/get-data-using-apis/use-twitter-api-r/
+   
+https://medium.com/@traffordDataLab/exploring-tweets-in-r-54f6011a193d
+
+* Presentación sobre el paquete `rtweet`: 
+
+https://mkearney.github.io/nicar_tworkshop/#1
