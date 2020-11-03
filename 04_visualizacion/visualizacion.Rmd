@@ -105,7 +105,7 @@ figura2.2 <- ggplot(sw2, aes(x = height, y = mass)) +
 
 ```
 
-Al incluir "color" o cualquier otro argumento dentro de "aes", estamos diciendo que queremos que el color varíe con respecto a otra columna, en este caso "species_group". Pero si dentro de `geom_point` especificamos directamente un color, todos los puntos quedarán cambiados. Los atributos más comunes que podemos modificar son, además del color, la forma (shape), tamaño (size), o el relleno (fill).
+Al incluir "color" o cualquier otro argumento dentro de `aes`, estamos diciendo que queremos que el color varíe con respecto a otra columna, en este caso "species_group". Pero si dentro de `geom_point` especificamos directamente un color, todos los puntos quedarán cambiados. Los atributos más comunes que podemos modificar son, además del color, la forma (shape), tamaño (size), o el relleno (fill).
 
 ```{r}
 figura2.3 <- ggplot(sw2, aes(x = height, y = mass)) +
@@ -134,6 +134,74 @@ figura3 <- ggplot(sw2, aes(x = species_group)) +
 # gráfico de cajas (boxplot)
 figura4 <- ggplot(sw2, aes(x = species_group, y = height)) + 
   geom_boxplot(aes(fill = species_group))
+
+# distribución de puntos 
+figura5 <- ggplot(sw2, aes(x = species_group, y = height)) + 
+  geom_jitter(aes(color = species_group))
+
+# puntos y cajas
+figura6 <- ggplot(sw2, aes(x = species_group, y = height)) + 
+  geom_jitter(aes(color = species_group), alpha = .8) +
+  geom_boxplot(aes(fill = species_group), alpha = .5) 
+
+# histogramas
+figura7 <- ggplot(sw2, aes(x = height)) + 
+  geom_histogram(bins = 30)
+
+figura8 <- ggplot(sw2, aes(x = height)) + 
+  geom_density()
+
+```
+
+También podemos, como vimos en la clase sobre modelos estadísticos, añadir regresiones a nuestras figuras. Para ello usamos la orden `geom_smooth`. Este ejemplo también nos sirve para comprobar, de nuevo, que podemos "apilar" todas las capas que queramos.
+
+```{r}
+
+# Por defecto usa un método de regresión polinomial (loess)
+figura9 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth()
+
+# pero podemos especificar otros modelos
+figura10 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm")
+
+# igual que dividir el color por grupos, podemos dibujar
+# una regresión por cada grupo
+figura11 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm", aes(color = species_group))
+
+# algunos detalles
+figura12 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm", 
+              aes(color = species_group),se = FALSE)
+
+```
+
+Ahora podemos entender mejor por qué ggplot2 trabaja con datos en formato "long". En este formato, los "grupos" de datos están en una columna, en vez de divididos en varias columnas.
+
+```{r}
+head(sw2)
+
+sw2.ejemplo <- sw2[,c("name","height","mass","species_group")]
+sw2.ejemplo$valor <- TRUE
+
+sw3.ejemplo <- pivot_wider(data = sw2.ejemplo,
+                           id_cols = c(name,height,mass),
+                           names_from = species_group, 
+                           values_from = valor,
+                           values_fill = list(valor = FALSE))
+head(sw3.ejemplo)
+```
+
+Al dividir la especie en columnas, sería imposible crear una figura con todas las categorías de manera sencilla: ¿cuál sería la columna para especificar la agrupación?
+
+```{r}
+sw3.plot <- ggplot(sw3.ejemplo, aes(x = height, y = mass)) + 
+  geom_point(aes(color = Human)) # esto sólo nos diferencia humanos de otros
 
 ```
 
@@ -205,7 +273,7 @@ Una vez tenemos los datos agrupados como nos interesa, creamos la figura
 # For line graphs, the data points must be grouped so that it knows 
 # which points to connect. 
 # In this case, it is simple – all points should be connected, so group=1.
-figura5 <- ggplot(terremotos_siglo, aes(x = siglo, 
+figura13 <- ggplot(terremotos_siglo, aes(x = siglo, 
                                         y = terremotos, 
                                         group = 1)) +
   geom_line()
@@ -214,7 +282,7 @@ figura5 <- ggplot(terremotos_siglo, aes(x = siglo,
 Como antes con los puntos, podemos especificar diferentes parámetros de la línea (de nuevo, ver http://www.cookbook-r.com/Graphs/Shapes_and_line_types/)
 
 ```{r}
-figura5 <- ggplot(terremotos_siglo, aes(x = siglo, 
+figura14 <- ggplot(terremotos_siglo, aes(x = siglo, 
                                         y = terremotos, 
                                         group = 1)) +
   geom_line(linetype = "dashed", size = 3, color = "darkred")
@@ -223,15 +291,16 @@ figura5 <- ggplot(terremotos_siglo, aes(x = siglo,
 A veces, en vez de colorear puntos de diferente color, podemos pensar en una figura diferente para cada categoría de datos. Por ejemplo, volviendo a Star Wars
 
 ```{r}
-figura6 <- ggplot(sw2, aes(x = height, y = mass))+
-  geom_point() + 
+figura15 <- ggplot(sw2, aes(x = height, y = mass))+
+  geom_point() +
+  geom_smooth(method = "lm") +
   facet_grid(species_group ~ .)
 ```
 
 La capa "facet_grid" divide nuestra figura en función a la columna o columnas que queramos, tanto en el eje vertical como horizontal. La sintaxis es "división_vertical ~ división_horizontal". Si sólo queremos un eje de división, como en el ejemplo de arriba, usamos un punto en el otro eje (species_group ~ .)
 
 ```{r}
-figura7 <- ggplot(sw2, aes(x = height, y = mass))+
+figura16 <- ggplot(sw2, aes(x = height, y = mass))+
   geom_point() + 
   facet_grid(gender~species_group)
 ```
@@ -239,7 +308,7 @@ figura7 <- ggplot(sw2, aes(x = height, y = mass))+
 Estas divisiones se pueden combinar con otros atributos como colores, etc.
 
 ```{r}
-figura8 <- ggplot(sw2, aes(x = height, y = mass))+
+figura17 <- ggplot(sw2, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender)) + 
   facet_grid(gender~species_group)
 ```
@@ -251,7 +320,7 @@ En este último ejemplo vemos cómo, por cada atributo que incluimos en "aes", s
 # primero, eliminamos los NA para mejorar la visualización
 sw3 <- subset(sw2, !is.na(height) & !is.na(mass) & !is.na(gender))
 
-figura9 <- ggplot(sw3, aes(x = height, y = mass))+
+figura18 <- ggplot(sw3, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender), size = 2) + 
   facet_grid(gender ~ species_group) + 
   # una nueva capa que especifica título y, opcionalmente, subtítulo
@@ -276,7 +345,7 @@ Las capas que especifican los atributos vienen especificadas por la sintaxis `sc
 Hay muchas mas opciones que se pueden modificar. La apariencia general de las figuras (los colores de fondo, las cuadrículas, etc) vienen dadas por lo que se llama "temas". En ggplot2 hay una serie de temas ya estructurados, que se pueden usar fácilmente (ver ejemplos de los temas por defecto en https://ggplot2.tidyverse.org/reference/ggtheme.html)
 
 ```{r}
-figura10 <- ggplot(sw3, aes(x = height, y = mass))+
+figura19 <- ggplot(sw3, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender), size = 2) + 
   facet_grid(gender ~ species_group) + 
   # una nueva capa que especifica título y, opcionalmente, subtítulo
