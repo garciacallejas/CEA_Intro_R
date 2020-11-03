@@ -1,4 +1,4 @@
-# 04 - Visualización
+knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE, message = FALSE)
 
 # este paquete incluye ggplot2
 library(tidyverse)
@@ -66,8 +66,8 @@ table(sw2$species)
 # primero, creamos una columna idéntica a "species"
 sw2$species_group <- sw2$species
 # y agrupamos aquellas que no son ni "Human", ni "Droid", ni "Yoda's species"
-sw2$species_group[which(!sw2$species %in% c("Human", 
-                                            "Droid", 
+sw2$species_group[which(!sw2$species %in% c("Human",
+                                            "Droid",
                                             "Yoda's species"))] <- "Other"
 table(sw2$species_group)
 
@@ -100,6 +100,62 @@ figura3 <- ggplot(sw2, aes(x = species_group)) +
 # gráfico de cajas (boxplot)
 figura4 <- ggplot(sw2, aes(x = species_group, y = height)) + 
   geom_boxplot(aes(fill = species_group))
+
+# distribución de puntos 
+figura5 <- ggplot(sw2, aes(x = species_group, y = height)) + 
+  geom_jitter(aes(color = species_group))
+
+# puntos y cajas
+figura6 <- ggplot(sw2, aes(x = species_group, y = height)) + 
+  geom_jitter(aes(color = species_group), alpha = .8) +
+  geom_boxplot(aes(fill = species_group), alpha = .5) 
+
+# histogramas
+figura7 <- ggplot(sw2, aes(x = height)) + 
+  geom_histogram(bins = 30)
+
+figura8 <- ggplot(sw2, aes(x = height)) + 
+  geom_density()
+
+
+
+# Por defecto usa un método de regresión polinomial (loess)
+figura9 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth()
+
+# pero podemos especificar otros modelos
+figura10 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm")
+
+# igual que dividir el color por grupos, podemos dibujar
+# una regresión por cada grupo
+figura11 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm", aes(color = species_group))
+
+# algunos detalles
+figura12 <- ggplot(sw2, aes(x = height, y = mass)) +
+  geom_point(aes(color = species_group)) + 
+  geom_smooth(method = "lm", 
+              aes(color = species_group),se = FALSE)
+
+
+head(sw2)
+
+sw2.ejemplo <- sw2[,c("name","height","mass","species_group")]
+sw2.ejemplo$valor <- TRUE
+
+sw3.ejemplo <- pivot_wider(data = sw2.ejemplo,
+                           id_cols = c(name,height,mass),
+                           names_from = species_group, 
+                           values_from = valor,
+                           values_fill = list(valor = FALSE))
+head(sw3.ejemplo)
+
+sw3.plot <- ggplot(sw3.ejemplo, aes(x = height, y = mass)) + 
+  geom_point(aes(color = Human)) # esto sólo nos diferencia humanos de otros
 
 
 eq <- read.csv2(file = "../data/Earthquake_data.csv",dec = ".",stringsAsFactors = FALSE)
@@ -163,25 +219,26 @@ terremotos_siglo$siglo <- factor(terremotos_siglo$siglo,
 # For line graphs, the data points must be grouped so that it knows 
 # which points to connect. 
 # In this case, it is simple – all points should be connected, so group=1.
-figura5 <- ggplot(terremotos_siglo, aes(x = siglo, 
+figura13 <- ggplot(terremotos_siglo, aes(x = siglo, 
                                         y = terremotos, 
                                         group = 1)) +
   geom_line()
 
-figura5 <- ggplot(terremotos_siglo, aes(x = siglo, 
+figura14 <- ggplot(terremotos_siglo, aes(x = siglo, 
                                         y = terremotos, 
                                         group = 1)) +
   geom_line(linetype = "dashed", size = 3, color = "darkred")
 
-figura6 <- ggplot(sw2, aes(x = height, y = mass))+
-  geom_point() + 
+figura15 <- ggplot(sw2, aes(x = height, y = mass))+
+  geom_point() +
+  geom_smooth(method = "lm") +
   facet_grid(species_group ~ .)
 
-figura7 <- ggplot(sw2, aes(x = height, y = mass))+
+figura16 <- ggplot(sw2, aes(x = height, y = mass))+
   geom_point() + 
   facet_grid(gender~species_group)
 
-figura8 <- ggplot(sw2, aes(x = height, y = mass))+
+figura17 <- ggplot(sw2, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender)) + 
   facet_grid(gender~species_group)
 
@@ -189,7 +246,7 @@ figura8 <- ggplot(sw2, aes(x = height, y = mass))+
 # primero, eliminamos los NA para mejorar la visualización
 sw3 <- subset(sw2, !is.na(height) & !is.na(mass) & !is.na(gender))
 
-figura9 <- ggplot(sw3, aes(x = height, y = mass))+
+figura18 <- ggplot(sw3, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender), size = 2) + 
   facet_grid(gender ~ species_group) + 
   # una nueva capa que especifica título y, opcionalmente, subtítulo
@@ -208,7 +265,7 @@ figura9 <- ggplot(sw3, aes(x = height, y = mass))+
                      labels = c("Femenino", "Masculino", "Otro/ninguno"), 
                      values = c(1,5,6))
 
-figura10 <- ggplot(sw3, aes(x = height, y = mass))+
+figura19 <- ggplot(sw3, aes(x = height, y = mass))+
   geom_point(aes(color = species_group, shape = gender), size = 2) + 
   facet_grid(gender ~ species_group) + 
   # una nueva capa que especifica título y, opcionalmente, subtítulo
