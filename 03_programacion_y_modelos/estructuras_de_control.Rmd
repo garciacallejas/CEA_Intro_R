@@ -182,6 +182,8 @@ head(num.naves)
 num.naves["Chewbacca"]
 ```
 
+*************************************************** bucles for para leer archivos uno a uno *******************************************************
+
 ## Familia de funciones `apply`
 
 El objetivo de este curso no es que salgáis manejando los conceptos de programación en R perfectamente... eso es imposible de todas formas, aun después de muchos años de uso, todos cometemos errores a diario. Antes bien, lo que intentamos con estos apuntes es que conozcáis las diferentes herramientas que podemos usar en R para tratar diferentes problemas. Así que no os preocupéis si no entendéis todo a la primera: el único secreto es, como todo en la vida, la práctica. Si acabáis usando estas herramientas en vuestro trabajo, acabaréis naturalizándolas. Así pues, ahora os presento una manera alternativa, y muy usada en R, de hacer operaciones sobre múltiples filas o columnas a la vez.
@@ -269,16 +271,3 @@ for(i in 1:length(eq.clean)){
 # lapply devuelve una lista, aquí hemos definido un vector
 mean.with.for
 ```
-
-EJERCICIO 1
-
-Crea una matriz de 100x3 en la que cada columna esté formada por números aleatorios, la primera entre 0-1, la segunda entre 0-10, la tercera entre 0-100.
-pista: `?runif`
-
-Utilizando bucles o funciones de la familia apply, calcula la media y la desviación típica de cada columna.
-
-Guarda los resultados en un dataframe con tres filas y, al menos, una columna "media" y una columna "desviacion.tipica".
-
-
-
-

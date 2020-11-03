@@ -138,10 +138,12 @@ summary(sw3)
 
 Como esperábamos, el año no es significativo, no nos ayuda a explicar el peso. El modelo más convincente es el que tiene la altura como única variable explicativa, después de eliminar el punto extremo que era Jabba. Un último valor de interés, que nos sirve para evaluar el ajuste general de nuestro modelo, en vez de cada variable por separado, es el coeficiente de correlación, o $R²$. Este varía entre 0 (ninguna correlación) y 1 (correlación perfecta), y aparece al final del "summary" del modelo. En general, es recomendable fijarse en el $R²$ ajustado, que en nuestro mejor modelo es de 0.572.
 
+Estos valores se pueden extraer con la orden
+
+```{r}
+summary(sw3)$r.squared
+summary(sw3)$adj.r.squared
+```
+
 En estos puntos sólo hemos tratado de manera muy básica el modelo estadístico más sencillo, la regresión lineal. Incluso dentro de un modelo tan sencillo, hay mucho que nos hemos dejado, y como siempre, en internet hay muchísima información que podemos consultar. Un tutorial muy sencillo y más completo es, por ejemplo, el de DataCamp: https://www.datacamp.com/community/tutorials/linear-regression-R
 
-Algunos recursos para aprender mucha más estadística con R:
-
-* http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf
-
-* ftp://ftp.tuebingen.mpg.de/pub/kyb/bresciani/Crawley%20-%20The%20R%20Book.pdf

@@ -1,0 +1,40 @@
+---
+title: "Ejercicios extra (bucles)"
+author: "David García-Callejas"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE)
+```
+
+## 1 
+Usando el dataset "iris":
+
+a) almacena en un vector el valor medio de cada columna
+
+b) almacena en otro vector el número de valores únicos de cada columna
+pista: usa la función n_distinct del paquete tidyverse
+
+## 2
+Usando el dataset "sample500tuits_starwarsandaluz.txt":
+
+a) crea un dataframe con dos columnas: num.caracteres y num.palabras,
+que almacene el número de caracteres y el número de palabras de cada tuit
+
+b) muestra por pantalla el número medio de caracteres y palabras de los datos
+
+c) ¿cómo se harían estas operaciones sin usar bucles?
+
+## 3
+Crea un script que, usando la carpeta "data":
+
+a) muestre por pantalla todos los archivos con extensión .csv que hay
+en esa carpeta
+
+b) lea los archivos cuyo nombre contenga "starwars_personajes",
+y almacene en un dataframe tres campos:
+- el nombre y ruta del archivo
+- el número de filas
+- el número de columnas
+

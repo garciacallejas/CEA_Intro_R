@@ -381,12 +381,3 @@ puntos_terremotos2
 ```
 
 En este último ejemplo, no hemos dado valores manuales al relleno, sólo hemos dicho que use la escala "viridis". Como son datos continuos, y el atributo que queremos retocar es el relleno (fill), la orden es `scale_fill_continuous`. La escala "viridis" es muy recomendable para gradientes continuos (ver https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html)
-
-Más recursos sobre `ggplot2`:
-
-* Trucos útiles y sencillos: http://www.cookbook-r.com/Graphs/
-
-* El libro escrito por Hadley Wickham, el creador del paquete: https://ggplot2-book.org/
-
-* Más detalles sobre mapas: https://www.datanovia.com/en/blog/how-to-create-a-map-using-ggplot2/
-

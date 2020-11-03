@@ -314,19 +314,3 @@ Ocurre a menudo que funciones más avanzadas tienen varios argumentos, como el c
 ```
 
 En la ayuda podemos leer una descripción de la función, su sintaxis, los argumentos que acepta, el tipo de valor que devuelve, y en muchas ocasiones, ejemplos prácticos de su uso.
-
-## Ejercicios
-
-1
-
-a) crea un vector numérico que vaya de 1 a 100 en intervalos de 0.1.
-b) usa la función "which" para saber qué elementos del vector que has creado son mayores de 90, y almacena ese resultado.
-c) crea un nuevo vector que almacene los valores del primer vector que son mayores de 90.
-
-2
-
-a) la función "runif" genera vectores de números aleatorios entre un número mínimo y un máximo. Comprueba la ayuda de R para esta función (verás que hay otras funciones en su misma página de ayuda, mira las secciones "usage" para ver su sintaxis, y "arguments" para ver sus argumentos).
-b) usa la función runif para almacenar un vector con 50 elementos aleatorios entre 0 y 10.
-c) obtén la media y la desviación típica de esos elementos.
-d) crea un nuevo vector que sólo contenga los elementos del primero que sean menores o iguales a 5 (usa la función "which" como en el primer ejercicio).
-
