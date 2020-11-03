@@ -89,8 +89,8 @@ table(sw2$species)
 # primero, creamos una columna idéntica a "species"
 sw2$species_group <- sw2$species
 # y agrupamos aquellas que no son ni "Human", ni "Droid", ni "Yoda's species"
-sw2$species_group[which(!sw2$species %in% c("Human", 
-                                            "Droid", 
+sw2$species_group[which(!sw2$species %in% c("Human",
+                                            "Droid",
                                             "Yoda's species"))] <- "Other"
 table(sw2$species_group)
 
