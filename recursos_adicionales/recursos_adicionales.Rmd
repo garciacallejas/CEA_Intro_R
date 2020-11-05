@@ -53,6 +53,10 @@ https://ggplot2-book.org/
 
 https://www.datanovia.com/en/blog/how-to-create-a-map-using-ggplot2/
 
+* Mapas con datos vectoriales a través del paquete `sf`:
+
+https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html
+
 ## Análisis de datos de twitter
 
 * Dos tutoriales relativamente sencillos:
@@ -68,3 +72,7 @@ https://mkearney.github.io/nicar_tworkshop/#1
 * Conteo de palabras, sentiment analysis:
 
 https://utstat.toronto.edu/~nathan/teaching/sta4002/Class1/scrapingtwitterinR-NT.html
+
+https://rpubs.com/HAVB/tangos
+
+https://rpubs.com/Joaquin_AR/334526

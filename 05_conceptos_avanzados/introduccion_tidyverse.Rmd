@@ -1,7 +1,9 @@
 ---
-title: "Introducción al tidyverse"
+title: "Introducción a tidyverse"
 author: "David García Callejas"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -172,12 +174,23 @@ tweet_words_2 %>% count(word,sort=T) %>%
 Y un pequeño sentiment analysis
 
 ```{r}
-# necesita el paquete "textdata"
-# bing_lex <- get_sentiments("nrc")
+# necesitamos un léxico en castellano
+lexico <- read.csv("https://bitsandbricks.github.io/data/sdal.csv", 
+                   stringsAsFactors = FALSE)
 
-# fn_sentiment <- tweet_words_2 %>% left_join(bing_lex)
+# igualamos el nombre de la columna "palabra" para unir los datasets
+head(tweet_words_2)
+names(tweet_words_2)[2] <- "palabra"
 
-# fn_sentiment %>% filter(!is.na(sentiment)) %>% group_by(sentiment) %>% summarise(n=n())
+sa <- tweet_words_2 %>% left_join(lexico)
+sa.long <- pivot_longer(sa,cols = c(media_agrado,media_activacion,media_imaginabilidad),names_to = "sentimiento",values_to = "media")
+
+sa.conteo <- sa.long %>% filter(!is.na(media)) %>% group_by(sentimiento) %>% summarise(total=sum(media))
+
+sa.plot <- ggplot(sa.conteo, aes(x = sentimiento, y = total)) +
+  geom_col(aes(stat = "identity")) + 
+  theme(axis.text.x  = element_text(angle = 60, hjust = 1))
+sa.plot
 ```
 
 
