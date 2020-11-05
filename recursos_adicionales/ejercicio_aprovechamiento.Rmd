@@ -1,0 +1,29 @@
+---
+title: "Ejercicio aprovechamiento"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE, message = FALSE)
+```
+
+En la carpeta "data" hay una subcarpeta "proyecto" con dos conjuntos de datos. Con esos datos:
+
+1) Comprueba si el producto interior bruto de los países (gdp en el archivo "nations.csv") explica estadísticamente sus niveles de emisiones de CO2 per cápita (co2_percap en el archivo nations2.csv). Pista: usa la función `left_join` para unir ambos conjuntos de datos en un solo dataframe.
+
+2) Muestra una figura con la distribución de países en esas dos variables. Elige la forma que consideres más apropiada de mostrar esa información.
+
+3) Crea una figura que muestre una regresión lineal entre estas dos variables, donde cada región geográfica (region en el archivo "nations.csv") esté en un panel distinto. 
+
+4) Crea una tercera figura que muestre cómo ha ido variando la población de cada región a lo largo de los años. En esta figura y en las anteriores, incluye un título y escribe los nombres de los ejes en español. Pista: antes de crear la figura, crea un dataframe con la población total por año y región usando tidyverse (`group_by`,`summarise`).
+
+5) ¿Qué porcentaje de países tiene una esperanza de vida mayor de 75 años? ¿Y en cada región? Pista: puedes usar funciones base (`which`,`subset`) y/o concatenar operaciones usando tidyverse (`filter`,`group_by`, etc).
+
+Instrucciones: guarda todo el código en un único script llamado "APELLIDO_NOMBRE_ejercicio_aprovechamiento.R". Comenta cada paso apropiadamente. Si quieres que te devuelva el código con comentarios, incluye tu dirección de email en un comentario al principio del script.
+
+Nota: No es necesario resolver todos los apartados perfectamente para obtener el certificado de aprovechamiento. Soluciona lo que puedas y deja indicado dónde tienes dudas y por qué.
+
+
+
