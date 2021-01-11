@@ -31,7 +31,7 @@ summary(eq.clean)
 eq.clean %>% summary()
 ```
 
-Una de las grandes fortalezas de estos paquetes es que se pueden concatenar operaciones
+Una de las grandes fortalezas de estos paquetes es que se pueden encadenar todas las operaciones que necesitemos
 
 ```{r}
 eq.clean %>%
@@ -182,16 +182,22 @@ lexico <- read.csv("https://bitsandbricks.github.io/data/sdal.csv",
 head(tweet_words_2)
 names(tweet_words_2)[2] <- "palabra"
 
+# unimos cada palabra a sus "sentimientos"
 sa <- tweet_words_2 %>% left_join(lexico)
+
+# pasamos los datos a formato long
 sa.long <- pivot_longer(sa,cols = c(media_agrado,
                                     media_activacion,media_imaginabilidad),
                         names_to = "sentimiento",values_to = "media")
 
+# y sacamos el valor total de cada categoría de sentimiento
+# en nuestras palabras.
 sa.conteo <- sa.long %>% 
   filter(!is.na(media)) %>% 
   group_by(sentimiento) %>% 
   summarise(total=sum(media))
 
+# creamos un gráfico de barras sencillo
 sa.plot <- ggplot(sa.conteo, aes(x = sentimiento, y = total)) +
   geom_col(aes(stat = "identity")) + 
   theme(axis.text.x  = element_text(angle = 60, hjust = 1))
