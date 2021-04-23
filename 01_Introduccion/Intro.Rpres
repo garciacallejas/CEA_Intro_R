@@ -1,7 +1,7 @@
 Introducción a R
 ========================================================
-author: D. García Callejas
-date: Octubre 2020
+author: David García Callejas
+date: Abril 2021
 autosize: true
 
 5 tardes delante de la pantalla
@@ -40,8 +40,7 @@ Los Básicos
 
 - Download R
 - R desde Rstudio (download Rstudio)
-- [Material del curso](https://github.com/garciacallejas/CEA2020_Intro)
-- Carpeta 'ejercicios' (No la abrais aun!)
+- [Material del curso](https://github.com/garciacallejas/CEA_Intro_R)
 - Trabajaremos sobre dos proyectos distintos.
 - Datos globales sobre terremotos, y datos de personajes de Star Wars.
 

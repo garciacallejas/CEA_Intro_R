@@ -182,7 +182,6 @@ head(num.naves)
 num.naves["Chewbacca"]
 ```
 
-*************************************************** bucles for para leer archivos uno a uno *******************************************************
 
 ## Familia de funciones `apply`
 

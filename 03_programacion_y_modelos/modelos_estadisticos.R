@@ -2,8 +2,10 @@
 
 # para el primer ejemplo, veremos la relación entre la 
 # profundidad y la magnitud de nuestros datos de terremotos
-eq <- read.csv2("../data/Earthquake_data.csv",
-                header = TRUE,dec = ".",stringsAsFactors = FALSE)
+eq <- read.csv2("data/Earthquake_data.csv",
+                header = TRUE,
+                dec = ".",
+                stringsAsFactors = FALSE)
 head(eq)
 
 # en la siguiente sesión aprenderemos a visualizar datos. 
