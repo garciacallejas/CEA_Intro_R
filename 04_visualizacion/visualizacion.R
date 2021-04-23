@@ -1,4 +1,3 @@
-knitr::opts_chunk$set(echo = TRUE, results = FALSE, warning = FALSE, message = FALSE)
 
 # este paquete incluye ggplot2
 library(tidyverse)
