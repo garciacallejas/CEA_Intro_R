@@ -380,8 +380,16 @@ Fijaos en la diferencia entre el tema estándar y el bw.
 Por último, vamos a dar unas pinceladas sobre cómo dibujar mapas en ggplot2. El paquete tiene la función `map_data` que permite recuperar contornos de paises o regiones. A su vez, estos contornos podemos dibujarlos como polígonos, con la función `geom_polygon` (recordad que los puntos los dibujamos con `geom_point`, líneas con `geom_line`, etc.)
 
 ```{r}
+# necesitamos cargar el paquete "maps"
+library(maps)
+
 # bajamos el contorno de todos los países especificando "world" en map_data
+# fijaos que podemos especificar alguna región concreta (p.ej. España)
+# con el argumento "region".
+
 world_map <- map_data("world")
+# world_map <- map_data("world",region = "Spain")
+
 # ¿qué es este objeto? simplemente un dataframe 
 # con diferentes puntos de latitud y longitud
 head(world_map)

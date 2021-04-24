@@ -3,7 +3,7 @@
 library(tidyverse)
 
 # leemos los datos de personajes de Star Wars
-personajes_SW <- read.csv2(file = "../data/starwars_info_personajes.csv",
+personajes_SW <- read.csv2(file = "data/starwars_info_personajes.csv",
                            stringsAsFactors = FALSE)
 
 # queremos crear una figura que muestre la altura y el peso de cada personaje, 
@@ -291,8 +291,16 @@ library(patchwork)
 figura.combinada <- figura9 + figura10
 
 
+# necesitamos cargar el paquete "maps"
+library(maps)
+
 # bajamos el contorno de todos los países especificando "world" en map_data
+# fijaos que podemos especificar alguna región concreta (p.ej. España)
+# con el argumento "region".
+
 world_map <- map_data("world")
+# world_map <- map_data("world",region = "Spain")
+
 # ¿qué es este objeto? simplemente un dataframe 
 # con diferentes puntos de latitud y longitud
 head(world_map)
